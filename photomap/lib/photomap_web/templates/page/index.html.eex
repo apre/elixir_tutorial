@@ -1,0 +1,13 @@
+
+
+<p>A simple photo-map application using <a href="https://leafletjs.com/">leaflet</a> engine.
+</p>
+
+<h1>Fast cache map</h1>
+
+<div id="fastmapid"></div>
+
+<h1>Online map</h1>
+<div id="mapid"></div>
+
+
