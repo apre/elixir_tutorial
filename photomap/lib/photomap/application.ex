@@ -15,6 +15,8 @@ defmodule Photomap.Application do
       # Start your own worker by calling: Photomap.Worker.start_link(arg1, arg2, arg3)
       # worker(Photomap.Worker, [arg1, arg2, arg3]),
     ]
+	
+	:ok = :hackney_pool.start_pool(:osm_pool, [timeout: 60000, max_connections: 50])
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options

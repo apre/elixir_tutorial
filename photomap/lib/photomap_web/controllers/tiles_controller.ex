@@ -72,7 +72,7 @@ defmodule PhotomapWeb.TilesController do
         full_url = "https://" <>params["subMachine"]<>".tile.openstreetmap.org/"<>params["zoom"]<>"/"<>params["xcoord"]<>"/" <>params["ycoord"]
          
         Logger.info "downloading #{full_url}"
-        case HTTPoison.get(full_url, [], hackney: [pool: :default, recv_timeout: 60000]) do
+        case HTTPoison.get(full_url, [], hackney: [pool: :osm_pool, recv_timeout: 60000]) do
             {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
                 
                 case  saveTile(rootdir,filename,body) do
@@ -82,8 +82,6 @@ defmodule PhotomapWeb.TilesController do
                            cachedTileName = "/tmp/blank.png"
                 end
                
-                
-
             {:ok, %HTTPoison.Response{status_code: 404}} ->
                 Logger.debug "not found #{full_url}"
                 cachedTileName = "/tmp/blank.png"
